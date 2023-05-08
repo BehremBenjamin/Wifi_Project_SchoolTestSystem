@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Administration Service</title>
+    <meta charset="UTF-8"/>
+</head>
+
+<body>
+
+<!-- primitive menu
+<div class="text-center">
+    <h1>Administrator Index</h1>
+        </br>
+    <div class="mb-3">
+        <a th:href="@{admin/students}">
+            <button type="button" class="btn btn-primary">View/Manage Students</button>
+        </a>
+    </div>
+
+    <div class="mb-3">
+        <a th:href="@{admin/questions}">
+            <button type="button" class="btn btn-primary">View/Manage Questions</button>
+        </a>
+    </div>
+
+    <div class="mb-3">
+        <a th:href="@{admin/quizTestList}">
+            <button type="button" class="btn btn-primary">View QuizTests</button>
+        </a>
+    </div>
+</div>
+-->
+<div class="text-center">
+    <h3>Administrator Index</h3>
+    </br> </br> </br>
+</div>
+<div th:fragment="admin-nav">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light flex-fill">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://cdn-icons-png.flaticon.com/512/167/167707.png" width="30" height="30" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0 flex-fill">
+                    <li class="nav-item mr-3 mx-2 mb-1">
+                        <a class="btn btn-primary" th:href="@{/admin/students}">Students</a>
+                    </li>
+
+                    <li class="nav-item mr-3 mx-2 mb-1">
+                        <a class="btn btn-primary" th:href="@{/admin/questions}">Questions</a>
+                    </li>
+
+                    <li class="nav-item mr-3 mx-2 mb-1">
+                        <a class="btn btn-primary" th:href="@{/admin/quizTestList}">Quiz Tests</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item mr-3 mx-2 mb-1">
+                        <a class="btn btn-danger" th:href="@{/}">Log out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
+</html>
