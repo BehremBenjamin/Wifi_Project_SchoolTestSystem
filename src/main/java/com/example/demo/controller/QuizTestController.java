@@ -41,12 +41,13 @@ public class QuizTestController {
         return "quiztest/list";
     }
 
-    @GetMapping("/{id}")
-    public String showQuizTest(@PathVariable Long id, Model model) {
+    @GetMapping("/details/{id}")
+    public String showQuizTestDetails(@PathVariable Long id, Model model) {
         QuizTest quizTest = quizTestService.getQuizTestById(id);
         model.addAttribute("quizTest", quizTest);
-        return "quiztest/show";
+        return "quizTestDetails";
     }
+
 
     @GetMapping("/{id}/delete")
     public String showDeleteConfirmation(@PathVariable Long id, Model model) {

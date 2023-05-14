@@ -7,10 +7,10 @@
 }
 
 body{
-    background-color: whitesmoke;
+    background-color: #333;
 }
 .container{
-    background-color: whitesmoke;
+    background-color: #555;
     color: #ddd;
     border-radius: 10px;
     padding: 20px;

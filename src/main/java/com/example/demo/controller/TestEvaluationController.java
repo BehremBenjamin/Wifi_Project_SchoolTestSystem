@@ -76,7 +76,7 @@ public class TestEvaluationController {
         evaluatingTest.setEvaluation((correctQuestions / questionNumber) * 100);
         evaluatingTest.setTitle(evaluatingTest.getQuizTestTopic() + " " + LocalDateTime.now().format(formatter));
 
-        String testStatus = evaluatingTest.getEvaluation() > 60 ? "passed" : "not passed";
+        String testStatus = evaluatingTest.getEvaluation() > 60 ? "PASSED" : "NOT PASSED";
 
         String formattedEvaluation = String.format("%.2f", evaluatingTest.getEvaluation());
 

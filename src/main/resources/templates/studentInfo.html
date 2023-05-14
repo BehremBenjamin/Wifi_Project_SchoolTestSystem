@@ -96,7 +96,7 @@
                     <td th:text="${quizTest.quizTestTopic}"></td>
                     <td th:text="${quizTest.creationTime}"></td>
                     <td th:text="${quizTest.user.firstName} + ' ' + ${quizTest.user.lastName}"></td>
-                    <td><a th:href="@{/quiztest/details/{id}(id=${quizTest.id})}">Details</a></td>
+                    <td><a th:href="@{/quiztests/details/{id}(id=${quizTest.id})}">Details</a></td>
                 </tr>
                 </tbody>
             </table>
