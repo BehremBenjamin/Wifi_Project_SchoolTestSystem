@@ -32,7 +32,10 @@
     </tr>
     <tr>
         <td>Evaluation:</td>
-        <td th:text="${quizTest.evaluation + '%'}"></td>
+        <td th:class="${quizTest.evaluation >= 60 ? 'green' : 'red'}">
+            <span th:text="${quizTest.evaluation + '%'}"></span>
+            <span th:text="${quizTest.evaluation >= 60 ? 'Passed' : 'Not Passed'}"></span>
+        </td>
     </tr>
     <tr>
         <td>Questions:</td>
@@ -53,5 +56,17 @@
     </tbody>
 </table>
 
+<!-- evaluation styling-->
+<style>
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+
+</style>
 </body>
 </html>
