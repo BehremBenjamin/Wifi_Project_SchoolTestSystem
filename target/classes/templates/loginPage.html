@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- link for bootstrap login: https://mdbootstrap.com/docs/standard/extended/login/ -->
+    <title>Login</title>
+</head>
+<body>
+
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                     class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <div th:if="${UserNotFound}" class="alert alert-danger" role="alert">
+                    <p th:text="${UserNotFound}"></p>
+                </div>
+                <div th:if="${LoginFail}" class="alert alert-danger" role="alert">
+                    <p th:text="${LoginFail}"></p>
+                </div>
+                <form th:action="@{/login}" method="post">
+                    <div class="form-outline mb-4">
+                        <input type="email" th:name="email" class="form-control form-control-lg"
+                               placeholder="Enter a valid email address"/>
+                        <label class="form-label">Email address</label>
+                    </div>
+                    <div class="form-outline mb-3">
+                        <input type="password" th:name="password" class="form-control form-control-lg"
+                               placeholder="Enter password"/>
+                        <label class="form-label">Password</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label>Choose your role:</label><br/>
+                        <input type="radio" th:name="role" th:value="${T(com.example.demo.model.Role).ADMIN}"/>
+                        <label>ADMIN</label><br/>
+                        <input type="radio" th:name="role" th:value="${T(com.example.demo.model.Role).STUDENT}"/>
+                        <label>STUDENT</label><br/>
+                    </div>
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button  type="submit" class="btn btn-primary btn-lg"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;">Login
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- v2
+<form th:action="@{/login}" method="post" th:object="${user}">
+    <div class="form-group">
+        <label>Email address</label>
+        <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+        <label >Password</label>
+        <input type="password" class="form-control" name="password" th:field="*{password}" placeholder="Password">
+    </div>
+    <div class="form-group">
+        <label>Role</label>
+        <radio class="form-control" name="role" th:field="*{role}">
+            <option th:value="ADMIN">ADMIN</option>
+            <option th:value="STUDENT">STUDENT</option>
+        </radio>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+-->
+</body>
+</html>
+

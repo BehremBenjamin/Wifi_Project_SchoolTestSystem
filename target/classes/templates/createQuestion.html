@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Create New Question</title>
+</head>
+<body>
+
+<div th:include="adminIndex :: admin-nav"></div>
+<!-- primitive form
+<form action="#" th:action="@{/users/save}" method="post" th:object="${user}">
+    <div>
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" required>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" th:field="*{password}" required>
+    </div>
+    <div>
+        <label>First Name:</label>
+        <input type="text" th:field="*{firstName}" required>
+    </div>
+    <div>
+        <label>Last Name:</label>
+        <input type="text" th:field="*{lastName}" required>
+    </div>
+    <div>
+        <label>Role:</label>
+        <select th:field="*{role}" required>
+            <option value="USER">USER</option>
+            <option value="ADMIN">ADMIN</option>
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Save">
+    </div>
+</form>
+-->
+
+<form th:action="@{/questions/saveQuestion}" method="post" th:object="${question}">
+    <section class="vh-140" style="background-color: #eee;">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-130">
+                <div class="col-lg-12 col-xl-11">
+                    <div class="card text-black" style="border-radius: 25px;">
+                        <div class="card-body p-md-5">
+                            <div class="row justify-content-center">
+                                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Create New Question</p>
+
+                                    <form class="mx-1 mx-md-4">
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <label>Topic: </label>
+                                                <select name="topic" th:field="*{topic}" required>
+                                                    <option th:value="${T(com.example.demo.model.Topic).HISTORY}"
+                                                            th:text="${T(com.example.demo.model.Topic).HISTORY}">HISTORY
+                                                    </option>
+                                                    <option th:value="${T(com.example.demo.model.Topic).GEOGRAPHY}"
+                                                            th:text="${T(com.example.demo.model.Topic).GEOGRAPHY}">
+                                                        GEOGRAPHY
+                                                    </option>
+                                                    <option th:value="${T(com.example.demo.model.Topic).BIOLOGY}"
+                                                            th:text="${T(com.example.demo.model.Topic).BIOLOGY}">BIOLOGY
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="form3Example1c">Question Text</label>
+                                                <input type="text" th:name="text" id="form3Example1c" th:field="*{text}"
+                                                       required
+                                                       class="form-control"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="form3Example1cc">Option 1:</label>
+                                                <input type="text" id="form3Example1cc" th:name="choices[0]"
+                                                       th:field="*{choices[0]}" required
+                                                       class="form-control"/>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="form3Example1cc">Option 2:</label>
+                                                <input type="text" id="form3Example1cc" th:name="choices[1]"
+                                                       th:field="*{choices[1]}" required
+                                                       class="form-control"/>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="form3Example1cc">Option 3:</label>
+                                                <input type="text" id="form3Example1cc" th:name="choices[2]"
+                                                       th:field="*{choices[2]}" required
+                                                       class="form-control"/>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="form3Example1cc">Option 4:</label>
+                                                <input type="text" id="form3Example1cc" th:name="choices[3]"
+                                                       th:field="*{choices[3]}" required
+                                                       class="form-control"/>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="form3Example1cc">Option 5:</label>
+                                                <input type="text" id="form3Example1cc" th:name="choices[4]"
+                                                       th:field="*{choices[4]}" required
+                                                       class="form-control"/>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="form3Example1cc">Correct answer:</label>
+                                                <select id="answer" th:name="answer"
+                                                        th:field="*{answer}" required>
+                                                    <option value="0">Option 1</option>
+                                                    <option value="1">Option 2</option>
+                                                    <option value="2">Option 3</option>
+                                                    <option value="3">Option 4</option>
+                                                    <option value="4">Option 5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                            <button type="submit" class="btn btn-primary btn-lg">Create</button>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                                         class="img-fluid" alt="Sample image">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+
+</body>
+</html>
+

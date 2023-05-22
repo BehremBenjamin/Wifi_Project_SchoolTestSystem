@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <title>Edit User</title>
+</head>
+<body>
+<div th:include="adminIndex :: admin-nav"></div>
+<!-- simple version
+<h2>Edit User</h2>
+<form action="#" th:action="@{/users/save}" method="post" th:object="${user}">
+    <input type="hidden" th:field="*{id}">
+    <div>
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" required>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" th:field="*{password}" required>
+    </div>
+    <div>
+        <label>First Name:</label>
+        <input type="text" th:field="*{firstName}" required>
+    </div>
+    <div>
+        <label>Last Name:</label>
+        <input type="text" th:field="*{lastName}" required>
+    </div>
+    <div>
+        <label>Role:</label>
+        <select th:field="*{role}" required>
+            <option value="USER" th:selected="${user.role == 'USER'}">USER</option>
+            <option value="ADMIN" th:selected="${user.role == 'ADMIN'}">ADMIN</option>
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update">
+    </div>
+</form>
+-->
+<div class="container py-2">
+    <div class="row my-2">
+        <!-- edit form column -->
+        <div class="col-lg-4">
+            <h2 class="text-center font-weight-light">Edit User</h2>
+        </div>
+        <div class="col-lg-8 order-lg-1 personal-info">
+            <form th:action="@{/users/{id}/edit}" method="post" th:object="${user}">
+                <input type="hidden" th:field="*{id}" th:value="${user.id}" />
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" th:field="*{firstName}"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" th:field="*{lastName}"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" th:field="*{email}"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="password" th:field="*{password}"/>
+                    </div>
+                </div>
+                </br>
+                <div class="form-group ">
+                    <label>Role:</label>
+                    <select th:field="*{role}" required>
+                        <option value="STUDENT" th:selected="${user.role == 'STUDENT'}">STUDENT</option>
+                        <option value="ADMIN" th:selected="${user.role == 'ADMIN'}">ADMIN</option>
+                    </select>
+                </div>
+                </br>
+                <div class="form-group row">
+                    <div class="col-lg-9 ml-auto text-right">
+                        <a th:href="@{/admin/users}"> <input type="button" class="btn btn-outline-secondary"
+                                                             value="Cancel"/></a>
+                        <input type="submit" class="btn btn-primary" value="Save Changes"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

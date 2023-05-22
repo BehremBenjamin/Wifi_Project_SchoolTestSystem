@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <title>User Test Answers</title>
+</head>
+<body>
+
+
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Test Evaluation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <p>User: <span th:text="${user.firstName + ' ' + user.lastName}"></span></p>
+            <p>Test: <span th:text="${evaluatingTest}"></span></p>
+            <p>Evaluation: <span th:text="${evaluation}"></span>%</p>
+            <p th:text="${testStatus}" th:class="${testStatus == 'PASSED' ? 'positive' : 'negative'}"></p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</br>
+
+
+<h6><b>Answers</b></h6></br>
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Question</th>
+        <th>Answer</th>
+        <th>Correct?</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="answer : ${answers}">
+        <td th:text="${answer.question.text}"></td>
+        <td th:text="${answer.questionAnswer}"></td>
+        <td th:text="${answer.correct} ? 'Yes' : 'No'"></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- logut function js -->
+<script>
+      alert("After 20 seconds, you will be logged out.");
+      setTimeout(function() {
+        window.location.href = "http://localhost:8080/";
+      }, 20000); // 20000 milliseconds = 20 seconds
+
+</script>
+
+<!-- small css for testStatus info -->
+<style>
+    .positive {
+    color: green;
+    font-weight: bold;
+
+    }
+
+    .negative {
+    color: red;
+    font-weight: bold;
+
+    }
+
+
+
+
+    </style>
+
+</body>
+</html>
