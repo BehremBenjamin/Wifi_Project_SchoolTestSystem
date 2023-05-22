@@ -108,18 +108,35 @@
                 <thead>
                 <tr>
                     <th>Question ID</th>
-                    <th>Answer</th>
+                    <th>Question</th>
+                    <th> Given Answer</th>
+                    <th> Correct </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="answer : ${user.answers}">
                     <td th:text="${answer.question.id}"></td>
+                    <td th:text="${answer.question.text}"></td>
                     <td th:text="${answer.answer}"></td>
+                    <td th:text="${answer.correct ? 'YES' : 'NO'}" th:class="${answer.correct ? 'green' : 'red'}"></td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+<!--  inline css style for answer color -->
+
+<style>
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+</style>
+
 </body>
 </html>
