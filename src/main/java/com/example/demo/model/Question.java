@@ -1,6 +1,9 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,6 +23,7 @@ public class Question {
     @Enumerated(EnumType.STRING)
     private Topic topic;
 
+    @JsonBackReference 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "questions")
     private Set<QuizTest> quizTests = new HashSet<>();
 

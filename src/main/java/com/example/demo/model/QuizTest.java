@@ -1,6 +1,9 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,6 +21,7 @@ public class QuizTest {
     private String title;
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JsonManagedReference
     @JoinTable(
             name = "quiztest_questions",
             joinColumns = @JoinColumn(name = "quiztest_id"),

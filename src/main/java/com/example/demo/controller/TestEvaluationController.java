@@ -8,6 +8,8 @@ import com.example.demo.repos.QuestionAnswerRepository;
 import com.example.demo.repos.QuizTestQuestionRepository;
 import com.example.demo.repos.QuizTestRepository;
 import com.example.demo.repos.UserRepository;
+import com.example.demo.services.EmailService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +38,9 @@ public class TestEvaluationController {
     @Autowired
     QuizTestQuestionRepository quizTestQuestionRepository;
 
+    @Autowired
+    private EmailService emailService;
+
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
     @PostMapping("/evaluateTest")
@@ -51,11 +56,10 @@ public class TestEvaluationController {
 
         QuizTest evaluatingTest = null;
         Optional<QuizTest> existingTest = quizTestRepository.findById(testId);
-        if (existingTest.isPresent())
-            evaluatingTest = existingTest.get();
-
+        if (existingTest.isPresent()) evaluatingTest = existingTest.get();
+        
         Set<Question> testQuestions = evaluatingTest.getQuestions();
-        int numberQuestion = testQuestions.size();
+        
         for (Question question : testQuestions) {
 
             questionNumber += 1;
@@ -76,7 +80,7 @@ public class TestEvaluationController {
         evaluatingTest.setEvaluation((correctQuestions / questionNumber) * 100);
         evaluatingTest.setTitle(evaluatingTest.getQuizTestTopic() + " " + LocalDateTime.now().format(formatter));
 
-        String testStatus = evaluatingTest.getEvaluation() > 60 ? "PASSED" : "NOT PASSED";
+        String testStatus = evaluatingTest.getEvaluation() >= 60 ? "PASSED" : "NOT PASSED";
 
         String formattedEvaluation = String.format("%.2f", evaluatingTest.getEvaluation());
 
@@ -87,6 +91,11 @@ public class TestEvaluationController {
         model.addAttribute("evaluation", formattedEvaluation);
         model.addAttribute("answers", questionAnswers);
         model.addAttribute("testStatus", testStatus);
+
+        emailService.sendEmail("benjosani@hotmail.com", 
+        "Testergebniss für " + user.getFirstName()
+        + " " + user.getLastName(), 
+        "Note für kurs " + evaluatingTest.getTitle() + " "+ " ist: " + " " +  testStatus + " - " + evaluatingTest.getEvaluation()+"%");
 
         return "evaluation";
     }
