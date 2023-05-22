@@ -49,10 +49,10 @@ public class AdminController {
         return "questionList";
     }
 
-    @GetMapping("/quiztests")
+    @GetMapping("/quizTestList")
     public String getQuizTests(Model model) {
         List<QuizTest> quizTests = quizTestRepository.findAll();
         model.addAttribute("quizTests", quizTests);
-        return "adminQuizTests";
+        return "allQuizTests";
     }
 }
