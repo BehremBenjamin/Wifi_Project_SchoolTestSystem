@@ -92,7 +92,7 @@ public class TestEvaluationController {
         model.addAttribute("answers", questionAnswers);
         model.addAttribute("testStatus", testStatus);
 
-        emailService.sendEmail("benjosani@hotmail.com", 
+        emailService.sendEmail("benjosani@hotmail.com",
         "Testergebniss für " + user.getFirstName()
         + " " + user.getLastName(), 
         "Note für kurs " + evaluatingTest.getTitle() + " "+ " ist: " + " " +  testStatus + " - " + evaluatingTest.getEvaluation()+"%");
