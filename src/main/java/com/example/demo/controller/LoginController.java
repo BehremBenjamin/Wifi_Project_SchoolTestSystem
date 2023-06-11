@@ -29,6 +29,10 @@ public class LoginController {
                                @RequestParam("password") String password,
                                @RequestParam("role") Role role, HttpSession session,
                                Model model) {
+
+        /*
+        Since Java 8 ofNullable wraps posible null values !!!
+         */
         Optional<User> optionalUser = Optional.ofNullable(userRepository.findByEmail(email));
 
         if (!optionalUser.isPresent()) {

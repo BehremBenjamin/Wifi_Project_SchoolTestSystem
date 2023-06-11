@@ -33,6 +33,10 @@ public class QuestionController {
         return "createQuestion";
     }
 
+    /*
+    Name of a "question" object is binded directly
+        no neet for explicit @ModelAttribute
+     */
     @PostMapping("/saveQuestion")
     public String save(Question question) {
         questionRepository.save(question);

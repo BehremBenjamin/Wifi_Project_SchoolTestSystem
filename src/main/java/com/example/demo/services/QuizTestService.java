@@ -49,6 +49,19 @@ public class QuizTestService {
     public Set<Question> generateRandomQuestionsByTopic(Topic topic, int limit) {
         List<Question> questions = questionRepository.findRandomQuestionsByTopic(String.valueOf(topic), limit);
         Collections.shuffle(questions);
+
+        /* protecting against IndexOutOfBoundsException:
+           @ subList() - returning sublist of question list
+                from index (0, defined number) included
+
+          @ Math.min(param1, param2) returning smaller between two parameters
+              max number of taken question is size of a question list
+              making it impossible to take more questions than exists in DB
+
+          @  another constraint on limit: studentIndex.html line 35:
+                th:name="limit" placeholder="Min = 5 Max = 20" required min="5" max="20">
+         */
+
         return new HashSet<>(questions.subList(0, Math.min(questions.size(), limit)));
     }
 
